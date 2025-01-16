@@ -1,0 +1,23 @@
+<h1><%= @list.name %></h1>
+<%= link_to 'Back to Lists', lists_path %>
+
+<h2>Bookmarks</h2>
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li>
+      <%= bookmark.movie.title %> - <%= bookmark.comment %>
+      <%= form_with url: list_bookmark_path(@list, bookmark), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd-inline' do %>
+        <%= submit_tag 'Remove', class: 'btn btn-danger' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add a Movie</h2>
+<%= form_with model: [@list, Bookmark.new], local: true do |form| %>
+  <%= form.label :movie_id, "Movie" %>
+  <%= form.collection_select :movie_id, Movie.all, :id, :title %>
+  <%= form.label :comment %>
+  <%= form.text_field :comment %>
+  <%= form.submit 'Add Movie' %>
+<% end %>
