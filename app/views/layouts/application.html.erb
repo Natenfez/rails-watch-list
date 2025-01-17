@@ -12,11 +12,34 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/">Watch List</a>
-    </div>
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">Watch List 🍿</a>
+        <div class="navbar-links">
+          <%= link_to 'My lists', lists_path, class: 'nav-link' %>
+          <%= link_to 'New list', new_list_path, class: 'nav-link' %>
+        </div>
+      </div>
     </nav>
-    <%= yield %>
+
+    <% if request.path == root_path %>
+      <div class="home-banner" style="background-image: url('<%= asset_path('felix-mooneeram-evlkOfkQ5rE-unsplash.jpg') %>');">
+        <div class="home-banner-content">
+          <h1>Save any kind of movies</h1>
+        </div>
+      </div>
+    <% end %>
+
+    <% if request.path == list_path(:id) %>
+      <div class="list-banner">
+        <div class="list-banner-content">
+          <h1><%= @list.name %></h1>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="container mt-3">
+      <%= yield %>
+    </div>
   </body>
 </html>

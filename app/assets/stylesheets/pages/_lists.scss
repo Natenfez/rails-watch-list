@@ -1,0 +1,85 @@
+.list-banner {
+  background-color: black;
+  color: white;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .list-banner-content {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.my-lists {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+
+  .list-card {
+    flex: 1;
+    max-width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1.5rem;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .list-card-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+      text-decoration: none;
+      color: black;
+
+      .movie-poster {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+
+      .movie-overview {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        color: #333;
+      }
+
+      .movie-rating {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        color: #777;
+      }
+
+      .movie-comment {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        font-style: italic;
+        color: #555;
+      }
+
+      .btn-danger {
+        margin-top: 1rem;
+        width: 100%;
+        font-weight: bold;
+      }
+    }
+  }
+}

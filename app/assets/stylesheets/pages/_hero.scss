@@ -1,0 +1,26 @@
+.home-banner, .list-banner {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.home-banner {
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+}
+
+.list-banner {
+  background-color: black;
+}
+
+.home-banner-content, .list-banner-content {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+}

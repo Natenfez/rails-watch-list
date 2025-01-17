@@ -1,23 +1,38 @@
-<h1><%= @list.name %></h1>
-<%= link_to 'Back to Lists', lists_path %>
-
-<h2>Bookmarks</h2>
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <li>
-      <%= bookmark.movie.title %> - <%= bookmark.comment %>
-      <%= form_with url: list_bookmark_path(@list, bookmark), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd-inline' do %>
-        <%= submit_tag 'Remove', class: 'btn btn-danger' %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
-<h2>Add a Movie</h2>
-<%= form_with model: [@list, Bookmark.new], local: true do |form| %>
-  <%= form.label :movie_id, "Movie" %>
-  <%= form.collection_select :movie_id, Movie.all, :id, :title %>
-  <%= form.label :comment %>
-  <%= form.text_field :comment %>
-  <%= form.submit 'Add Movie' %>
+<% if request.path == list_path(@list) %>
+  <div class="list-banner">
+    <div class="list-banner-content">
+      <h1><%= @list.name %></h1>
+    </div>
+  </div>
 <% end %>
+
+<div class="container mt-3">
+  <h2>Bookmarks</h2>
+  <div class="my-lists">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="list-card">
+        <%= link_to list_path(@list), class: 'list-card-link' do %>
+          <div class="list-card-content">
+            <img src="<%= bookmark.movie.poster_url %>" alt="<%= bookmark.movie.title %> poster" class="movie-poster">
+            <h3><%= bookmark.movie.title %></h3>
+            <p class="movie-overview"><%= bookmark.movie.overview %></p>
+            <p class="movie-rating">Rating: <%= bookmark.movie.rating %> ⭐</p>
+            <p class="movie-comment">Comment: <%= bookmark.comment %></p>
+            <%= form_with url: list_bookmark_path(@list, bookmark), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd-inline' do %>
+              <%= submit_tag 'Remove', class: 'btn btn-danger' %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <h2>Add a Movie</h2>
+  <%= form_with model: [@list, Bookmark.new], local: true do |form| %>
+    <%= form.label :movie_id, "Movie" %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :title %>
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+    <%= form.submit 'Add Movie' %>
+  <% end %>
+</div>
